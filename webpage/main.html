@@ -1,0 +1,69 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>HTTPSMS Demo</title>
+  <meta name="description" content="The network less revolution">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+    <div class="grey lighten-3" style="height:1000px">
+    <div class="container" style="padding:5%">
+        <div class="row">
+            <div class="col s12 card">
+                <div class="card-content">
+                    <span class="card-title">Trips</span>
+                    <table id="trips">
+                    <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>EndPoint</th>
+                        <th>Phone #</th>
+                        <th>From</th>
+                        <th>To</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tripsbody">
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+      
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+    <script>
+        timing = 10000
+
+        function addRow(row) {
+            $('#trips > tbody:last-child').append('<tr><td>' + row.timestamp + '</td><td>POST /trip</td><td>' + row.phone + '</td><td>' + row.start + '</td><td>' + row.end + '</td></tr>');
+        }
+
+        function refresh() {
+            $.get('<urlhere>', function(data) {
+                $('#tripsbody').html('');
+                for (var i = 0;i<data.trips.length;i++) {
+                    addRow(data.trips[i]);
+                }
+            });
+            setTimeout(function() {
+                refresh();
+            }, 1000);
+        }
+
+        refresh();
+    </script>
+</body>
+</html>
