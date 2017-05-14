@@ -12,5 +12,7 @@ module.exports.handle = (req, reply) => {
 }
 
 module.exports.addTrip = (id, phone, timestamp) => {
-    cache.addTrip(id, phone, chance.coordinates(), chance.coordinates(), timestamp)
+    const price = chance.dollar({max: 30})
+    cache.addTrip(id, phone, chance.coordinates(), chance.coordinates(), timestamp, price)
+    return price
 }

@@ -30,6 +30,7 @@
                         <th>Phone #</th>
                         <th>From</th>
                         <th>To</th>
+                        <th>Price</th>
                     </tr>
                     </thead>
                     <tbody id="tripsbody">
@@ -48,11 +49,11 @@
         timing = 10000
 
         function addRow(row) {
-            $('#trips > tbody:last-child').append('<tr><td>' + row.timestamp + '</td><td>POST /trip</td><td>' + row.phone + '</td><td>' + row.start + '</td><td>' + row.end + '</td></tr>');
+            $('#trips > tbody:last-child').append('<tr><td>' + row.timestamp + '</td><td>POST /trip</td><td>' + row.phone + '</td><td>' + row.start + '</td><td>' + row.end + '</td><td>' + row.price + '</td></tr>');
         }
 
         function refresh() {
-            $.get('<urlhere>', function(data) {
+            $.get('<url>', function(data) {
                 $('#tripsbody').html('');
                 for (var i = 0;i<data.trips.length;i++) {
                     addRow(data.trips[i]);

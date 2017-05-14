@@ -5,8 +5,8 @@ const cache = new NodeCache({ stdTTL: 100, checkperiod: 10 })
 
 const methods = {}
 
-methods.addTrip = (id, phone, start, end, timestamp) => {
-    cache.set(id, {phone, start, end, timestamp})
+methods.addTrip = (id, phone, start, end, timestamp, price) => {
+    cache.set(id, {phone, start, end, timestamp, price})
 }
 
 methods.getTrips = () => {

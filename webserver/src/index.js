@@ -12,8 +12,8 @@ server.route({
     path: '/trip',
     handler: (req, reply) => {
         const payload = req.payload
-        trips.addTrip(payload.id, payload.phone, payload.request_timestamp)
-        reply({success: true})
+        const price = trips.addTrip(payload.id, payload.phone, payload.request_timestamp)
+        reply({success: true, price})
     },
     config: {
         validate: {
